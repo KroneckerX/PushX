@@ -1,2 +1,2 @@
 # PushX
-Push message structure
+Push message structure written in C#
