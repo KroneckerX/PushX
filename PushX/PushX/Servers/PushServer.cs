@@ -12,10 +12,10 @@ namespace PushX.Servers
 {
     public class PushServer : Server
     {
-        private static IWebProxy nullProxy = null;
-        private PushServerSettings _settings = null;
-        private string _apiKey = null;
-        private bool isActive = true;
+        internal static IWebProxy nullProxy = null;
+        internal PushServerSettings _settings = null;
+        internal string _apiKey = null;
+        internal bool isActive = true;
 
         public event PushServerEventHandler onSuccess = null;
         public event PushServerErrorEventHandler onError = null;
