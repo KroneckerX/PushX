@@ -11,7 +11,7 @@ namespace PushX
         private static System.Web.Script.Serialization.JavaScriptSerializer serialz = null;
 
         /// <summary>
-        /// Convert data to json string
+        /// Converts data to json string
         /// </summary>
         /// <param name="data">represents data</param>
         /// <returns></returns>
