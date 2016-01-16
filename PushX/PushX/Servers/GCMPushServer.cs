@@ -65,7 +65,7 @@ namespace PushX.Servers
         /// <returns></returns>
         public string Send(IGCM message)
         {
-            return _send(message);
+            return send(message);
         }
 
         /// <summary>
@@ -79,10 +79,10 @@ namespace PushX.Servers
             string data = message.ToJson();
 
 
-            return await _sendAsync(message);
+            return await sendAsync(message);
         }
 
-        private string _send(IGCM message)
+        protected override string send(object message)
         {
             try
             {
@@ -113,7 +113,7 @@ namespace PushX.Servers
 
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
-                    OnSuccess(message, responseStr);
+                    OnSuccess((IGCM)message, responseStr);
                 }
                 else
                 {
@@ -125,12 +125,12 @@ namespace PushX.Servers
             }
             catch (Exception ex)
             {
-                OnError(message, ex);
+                OnError((IGCM)message, ex);
                 return null;
             }
         }
 
-        private async Task<string> _sendAsync(IGCM message)
+        protected override Task<string> sendAsync(object message)
         {
             try
             {
@@ -159,13 +159,13 @@ namespace PushX.Servers
                     responseStr = sreader.ReadToEnd();
                 }
 
-                OnSuccess(message, responseStr);
+                OnSuccess((IGCM)message, responseStr);
 
-                return responseStr;
+                return null;
             }
             catch (Exception ex)
             {
-                OnError(message, ex);
+                OnError((IGCM)message, ex);
                 return null;
             }
         }
