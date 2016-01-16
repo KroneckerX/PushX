@@ -10,15 +10,36 @@ using System.Threading.Tasks;
 
 namespace PushX.Servers
 {
-    public class PushServer : Server
+    /*
+    *   PUSH MESSAGE SERVER     -     PushX
+    *
+    *  - Create instance:
+    *  - Set API key
+    *  - Set settings
+    *  - Send message
+    *
+    */
+
+    public class GCMPushServer : Server
     {
         internal static IWebProxy nullProxy = null;
         internal PushServerSettings _settings = null;
         internal string _apiKey = null;
         internal bool isActive = true;
 
+        /// <summary>
+        /// Event that fires on successful sending
+        /// </summary>
         public event PushServerEventHandler onSuccess = null;
+
+        /// <summary>
+        /// Event that fires when sending interrupts
+        /// </summary>
         public event PushServerErrorEventHandler onError = null;
+
+        /// <summary>
+        /// Gets and sets server status
+        /// </summary>
         public bool IsActive
         {
             get
@@ -32,16 +53,26 @@ namespace PushX.Servers
             }
         }
 
-        internal PushServer()
+        internal GCMPushServer()
         {
 
         }
 
+        /// <summary>
+        /// Send message to GCM server
+        /// </summary>
+        /// <param name="message">represents message</param>
+        /// <returns></returns>
         public string Send(IGCM message)
         {
             return _send(message);
         }
 
+        /// <summary>
+        /// Send message to GCM server asynchronously
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
         public async Task<string> SendAsync(IGCM message)
         {
 
@@ -49,11 +80,6 @@ namespace PushX.Servers
 
 
             return await _sendAsync(message);
-        }
-
-        private void FinishWebRequest(IAsyncResult result)
-        {
-            
         }
 
         private string _send(IGCM message)
@@ -144,7 +170,7 @@ namespace PushX.Servers
             }
         }
 
-        private void OnSuccess(IGCM message, string response)
+        protected void OnSuccess(IGCM message, string response)
         {
             if (onSuccess != null)
             {
@@ -152,7 +178,7 @@ namespace PushX.Servers
             }
         }
 
-        private void OnError(IGCM message, Exception ex)
+        protected void OnError(IGCM message, Exception ex)
         {
             if (onError != null)
             {
@@ -160,11 +186,18 @@ namespace PushX.Servers
             }
         }
 
+        /// <summary>
+        /// Set server settings
+        /// </summary>
         public void SetSettings(PushServerSettings settings)
         {
             _settings = settings;
         }
 
+        /// <summary>
+        /// Set api key specified to server
+        /// </summary>
+        /// <param name="apiKey"></param>
         public void SetApiKey(string apiKey)
         {
             _apiKey = apiKey;

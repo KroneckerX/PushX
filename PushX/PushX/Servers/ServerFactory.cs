@@ -28,7 +28,7 @@ namespace PushX.Servers
             switch (serverType)
             {
                 case ServerType.PushServer:
-                    PushServer server = new PushServer();
+                    GCMPushServer server = new GCMPushServer();
                     server._Key = Guid.NewGuid().ToString();
                     _createdServers.Add(server);
                     return server;

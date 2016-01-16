@@ -12,7 +12,7 @@ namespace PushX.Misc
     {
         internal string _groupName = null;
 
-        internal Servers.PushServer _server = null;
+        internal Servers.GCMPushServer _server = null;
 
         private RegistrationIdCollection collection = null;
         private string _notf_group_id = null;
@@ -33,13 +33,13 @@ namespace PushX.Misc
             }
         }
 
-        public DeviceGroup(string groupName, Servers.PushServer server)
+        public DeviceGroup(string groupName, Servers.GCMPushServer server)
         {
             _groupName = groupName;
             _server = server;
         }
 
-        public static DeviceGroup Create(RegistrationIdCollection registers, string groupName, Servers.PushServer server)
+        public static DeviceGroup Create(RegistrationIdCollection registers, string groupName, Servers.GCMPushServer server)
         {
             string responsestr = createRequest(registers, groupName, server);
 
@@ -57,7 +57,7 @@ namespace PushX.Misc
             return null;
         }
 
-        private static string createRequest(RegistrationIdCollection registers, string groupName, Servers.PushServer server)
+        private static string createRequest(RegistrationIdCollection registers, string groupName, Servers.GCMPushServer server)
         {
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(server._settings.DeviceGroup);

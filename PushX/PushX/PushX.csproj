@@ -49,7 +49,7 @@
     <Compile Include="Misc\DeviceGroup.cs" />
     <Compile Include="Misc\RegistrationIdCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Servers\PushServer.cs" />
+    <Compile Include="Servers\GCMPushServer.cs" />
     <Compile Include="Servers\PushServerSettings.cs" />
     <Compile Include="Servers\Server.cs" />
     <Compile Include="Servers\ServerFactory.cs" />
