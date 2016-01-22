@@ -9,7 +9,7 @@
 
 ### Example
 
-GCM Push server:
+#### GCM Push server:
 
 First, create class of your data structure implementing IData interface, then
 
