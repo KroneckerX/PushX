@@ -22,13 +22,6 @@
 2.Create a class implementing IGCM interface
 
     public class Fubar : IGCM
-
-    public interface IGCM
-    {
-        object to { get; set; }//Registration Id of client
-        IData data { get; set; }//Data structure
-    }
-
     
 3.Create and instance and place your data to the box
     
