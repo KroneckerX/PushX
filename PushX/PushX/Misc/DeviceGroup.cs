@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PushX.Misc
 {
-    public class DeviceGroup : Server
+    public class DeviceGroup
     {
         internal string _groupName = null;
         
@@ -18,6 +18,8 @@ namespace PushX.Misc
 
         private RegistrationIdCollection collection = null;
 
+        private string _Key;
+        
         public string NotificationGroupId
         {
             get
@@ -37,6 +39,13 @@ namespace PushX.Misc
         public DeviceGroup(string groupName, Servers.GCMPushServer server)
         {
             _groupName = groupName;
+            _server = server;
+        }
+
+        public DeviceGroup(string groupName, string groupKey, Servers.GCMPushServer server)
+        {
+            _groupName = groupKey;
+            _Key = groupKey;
             _server = server;
         }
 
@@ -158,21 +167,13 @@ namespace PushX.Misc
 
         public string Send(IData data)
         {
-            return send(data);
-        }
-
-        protected override string send(object obj)
-        {
             IGCM gcm = new GCMData();
-            gcm.data = (IData)obj;
+            gcm.data = data;
             gcm.to = _Key;
 
             return _server.Send(gcm);
         }
 
-        protected override Task<string> sendAsync(object o)
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }
