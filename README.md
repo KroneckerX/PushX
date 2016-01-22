@@ -11,7 +11,11 @@
 
 #### GCM Push server:
 
-First, create class of your data structure implementing IData interface, then
+1. Create class of your data structure implementing IData interface
+
+    public class Foo : IData { }
+    
+2. Create a class implementing IGCM interface
 
     public interface IGCM
     {
@@ -19,9 +23,13 @@ First, create class of your data structure implementing IData interface, then
         IData data { get; set; }//Data structure
     }
 
-    IGCM dataToSend = new Foo();
+    public class Fubar : IGCM
+    
+3. Create and instance and place your data to the box
+    
+    IGCM dataToSend = new Fubar();
 
-Second, create server settings
+4. Create an instance for server settings
 
     PushServerSettings settings = new PushServerSettings()
     {
@@ -33,5 +41,7 @@ Second, create server settings
     GCMPushServer server = new GCMPushServer();
     server.SetApiKey({yourApiKey});
     server.SetSettings(settings);
-    
+
+4. Send your data    
+
     string responseString = server.Send(dataToSend);
