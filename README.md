@@ -59,4 +59,6 @@
 
     deviceGroup = new DeviceGroup("FooGroupName",server); //server is an instance of GCMPushServer
     
-
+**Call Existing Group**
+    
+    deviceGroup = new DeviceGroup({groupName},{groupKey},server);//server is an instance of GCMPushServer
