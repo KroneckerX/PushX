@@ -62,3 +62,23 @@
 **Call Existing Group**
     
     deviceGroup = new DeviceGroup({groupName},{groupKey},server);//server is an instance of GCMPushServer
+
+Notice that, any existing device group does NOT include the data of its past registration ids creating above way.
+
+**Add New Devices**
+
+    public bool Add(RegistrationIdCollection collection)
+    
+    deviceGroup.Add(collection);
+    
+**Remove Devices**
+    
+    public bool Remove(RegistrationIdCollection collection)
+    
+    deviceGroup.Remove(collection)
+    
+**Send**
+
+    public string Send(IData data)
+    
+    deviceGroup.Send(data);
