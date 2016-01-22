@@ -4,12 +4,12 @@
 [![PushX](https://img.shields.io/badge/.NET-4.5.2-green.svg)]()
 
 
-Push message structure written in C#
+3rd party push server structure written in C#.
 
 
 ### Example
 
-Push server:
+GCM Push server:
 
 First, create class of your data structure implementing IData interface, then
 
