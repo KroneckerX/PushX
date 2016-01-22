@@ -11,11 +11,13 @@
 
 #### GCM Push server:
 
-1. Create class of your data structure implementing IData interface
+1.Create class of your data structure implementing IData interface
 
     public class Foo : IData { }
     
 2.Create a class implementing IGCM interface
+
+    public class Fubar : IGCM
 
     public interface IGCM
     {
