@@ -4,25 +4,31 @@
 [![PushX](https://img.shields.io/badge/.NET-4.5.2-green.svg)]()
 
 
-Push message structure written in C#
+3rd party push server structure written in C#.
 
+## Contents
+- [Example](#example)
+    - [GCM Push Server](#gcm-push-server)
+    - [GCM Device Group](#gcm-device-group)
 
 ### Example
 
-Push server:
+#### GCM Push Server:
 
-First, create class of your data structure implementing IData interface, then
+1.Create class of your data structure implementing IData interface
 
-    public interface IGCM
-    {
-        object to { get; set; }//Registration Id of client
-        IData data { get; set; }//Data structure
-    }
+    public class Foo : IData { }
+    
+2.Create a class implementing IGCM interface
 
-    IGCM dataToSend = new Foo();
+    public class Fubar : IGCM
+    
+3.Create and instance and place your data to the box
+    
+    IGCM dataToSend = new Fubar();
 
-Second, create server settings
-
+4.Create server settings and server
+```csharp
     PushServerSettings settings = new PushServerSettings()
     {
         Server = "https://gcm-http.googleapis.com/gcm/send",
@@ -33,5 +39,40 @@ Second, create server settings
     GCMPushServer server = new GCMPushServer();
     server.SetApiKey({yourApiKey});
     server.SetSettings(settings);
-    
+```
+4.Push your data 
+
     string responseString = server.Send(dataToSend);
+
+
+#### GCM Device Group:
+
+    DeviceGroup deviceGroup = null;
+    
+**Create**
+
+    deviceGroup = new DeviceGroup("FooGroupName",server); //server is an instance of GCMPushServer
+    
+**Call Existing Group**
+    
+    deviceGroup = new DeviceGroup({groupName},{groupKey},server);//server is an instance of GCMPushServer
+
+Notice that, any existing device group does NOT include the data of its past registration ids creating above way.
+
+**Add New Devices**
+
+    public bool Add(RegistrationIdCollection collection)
+    
+    deviceGroup.Add(collection);
+    
+**Remove Devices**
+    
+    public bool Remove(RegistrationIdCollection collection)
+    
+    deviceGroup.Remove(collection)
+    
+**Send**
+
+    public string Send(IData data)
+    
+    deviceGroup.Send(data);
