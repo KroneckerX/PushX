@@ -1,4 +1,7 @@
 # PushX
+
+[![PushX](https://img.shields.io/pypi/status/Django.svg)]()
+
 Push message structure written in C#
 
 
