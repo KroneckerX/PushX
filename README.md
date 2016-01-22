@@ -8,7 +8,7 @@
 
 ## Contents
 - [Example](#example)
-    - [Test](#example)
+    - [Test](#gcmpushserver)
 
 ### Example
 
