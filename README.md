@@ -15,7 +15,7 @@
 
     public class Foo : IData { }
     
-2. Create a class implementing IGCM interface
+2.Create a class implementing IGCM interface
 
     public interface IGCM
     {
@@ -23,13 +23,12 @@
         IData data { get; set; }//Data structure
     }
 
-    public class Fubar : IGCM
     
-3. Create and instance and place your data to the box
+3.Create and instance and place your data to the box
     
     IGCM dataToSend = new Fubar();
 
-4. Create an instance for server settings
+4.Create an instance for server settings
 
     PushServerSettings settings = new PushServerSettings()
     {
@@ -42,6 +41,6 @@
     server.SetApiKey({yourApiKey});
     server.SetSettings(settings);
 
-4. Send your data    
+4.Send your data    
 
     string responseString = server.Send(dataToSend);
