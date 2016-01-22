@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PushX.Data;
+using PushX.Servers;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,20 +10,19 @@ using System.Threading.Tasks;
 
 namespace PushX.Misc
 {
-    public class DeviceGroup
+    public class DeviceGroup : Server
     {
         internal string _groupName = null;
-
+        
         internal Servers.GCMPushServer _server = null;
 
         private RegistrationIdCollection collection = null;
-        private string _notf_group_id = null;
 
         public string NotificationGroupId
         {
             get
             {
-                return _notf_group_id;
+                return _Key;
             }
         }
 
@@ -50,13 +51,14 @@ namespace PushX.Misc
             else
             {
                 DeviceGroup devgroup = new DeviceGroup(groupName, server);
-                devgroup._notf_group_id = responsestr;
+                devgroup._Key = responsestr;
                 devgroup.collection = registers;
             }
 
             return null;
         }
 
+        //TODO: set _operation
         private static string createRequest(RegistrationIdCollection registers, string groupName, Servers.GCMPushServer server)
         {
 
@@ -111,7 +113,6 @@ namespace PushX.Misc
             return _operation(collection, "remove") != null;
         }
 
-
         private string _operation(RegistrationIdCollection collection,string operation)
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(_server._settings.DeviceGroup);
@@ -124,7 +125,7 @@ namespace PushX.Misc
             {
                 operation = operation,
                 notification_key_name = _groupName,
-                notification_key = _notf_group_id,
+                notification_key = _Key,
                 registration_ids = collection
             };
 
@@ -153,6 +154,25 @@ namespace PushX.Misc
             {
                 return null;
             }
+        }
+
+        public string Send(IData data)
+        {
+            return send(data);
+        }
+
+        protected override string send(object obj)
+        {
+            IGCM gcm = new GCMData();
+            gcm.data = (IData)obj;
+            gcm.to = _Key;
+
+            return _server.Send(gcm);
+        }
+
+        protected override Task<string> sendAsync(object o)
+        {
+            throw new NotImplementedException();
         }
     }
 }
