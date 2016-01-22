@@ -55,7 +55,7 @@
 
     DeviceGroup deviceGroup = null;
     
-##### Create
+**Create**
 
     deviceGroup = new DeviceGroup("FooGroupName",server); //server is an instance of GCMPushServer
     
