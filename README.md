@@ -35,7 +35,7 @@
     IGCM dataToSend = new Fubar();
 
 4.Create server settings and server
-
+```csharp
     PushServerSettings settings = new PushServerSettings()
     {
         Server = "https://gcm-http.googleapis.com/gcm/send",
@@ -46,7 +46,7 @@
     GCMPushServer server = new GCMPushServer();
     server.SetApiKey({yourApiKey});
     server.SetSettings(settings);
-
+```
 4.Push your data 
 
     string responseString = server.Send(dataToSend);
