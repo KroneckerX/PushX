@@ -12,7 +12,7 @@
 
 ### Example
 
-#### GCM Push server:
+#### GCM Push Server:
 
 1.Create class of your data structure implementing IData interface
 
@@ -33,7 +33,7 @@
     
     IGCM dataToSend = new Fubar();
 
-4.Create an instance for server settings
+4.Create server settings and server
 
     PushServerSettings settings = new PushServerSettings()
     {
@@ -46,6 +46,17 @@
     server.SetApiKey({yourApiKey});
     server.SetSettings(settings);
 
-4.Send your data    
+4.Push your data 
 
     string responseString = server.Send(dataToSend);
+
+
+#### GCM Device Group:
+
+    DeviceGroup deviceGroup = null;
+    
+##### Create
+
+    deviceGroup = new DeviceGroup("FooGroupName",server); //server is an instance of GCMPushServer
+    
+
