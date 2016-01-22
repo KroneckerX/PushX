@@ -9,6 +9,7 @@
 ## Contents
 - [Example](#example)
     - [GCM Push Server](#gcm-push-server)
+    - [GCM Device Group](#gcm-device-group)
 
 ### Example
 
