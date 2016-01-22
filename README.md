@@ -8,7 +8,7 @@
 
 ## Contents
 - [Example](#example)
---  [Example](#example)
+- [-Example](#example)
 
 
 ### Example
