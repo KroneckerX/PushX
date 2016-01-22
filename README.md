@@ -30,7 +30,7 @@ Second, create server settings
         ProjectNumber = "{yourProjectNumber}"
     };
     
-    PushServer server = new PushServer();
+    GCMPushServer server = new GCMPushServer();
     server.SetApiKey({yourApiKey});
     server.SetSettings(settings);
     
