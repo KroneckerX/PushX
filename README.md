@@ -21,13 +21,13 @@
     public class Foo : IData { }
 ```
 2.Create a class implementing IGCM interface
-
+```csharp
     public class Fubar : IGCM
-    
+```
 3.Create and instance and place your data to the box
-    
+```csharp
     IGCM dataToSend = new Fubar();
-
+```
 4.Create server settings and server
 ```csharp
     PushServerSettings settings = new PushServerSettings()
