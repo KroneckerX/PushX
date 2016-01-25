@@ -17,9 +17,9 @@
 #### GCM Push Server:
 
 1.Create class of your data structure implementing IData interface
-
+```csharp
     public class Foo : IData { }
-    
+```
 2.Create a class implementing IGCM interface
 
     public class Fubar : IGCM
