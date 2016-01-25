@@ -2,6 +2,7 @@
 
 [![PushX](https://img.shields.io/pypi/status/Django.svg)]()
 [![PushX](https://img.shields.io/badge/.NET-4.5.2-green.svg)]()
+[![Build Status](https://travis-ci.org/KroneckerX/PushX.svg?branch=master)](https://travis-ci.org/KroneckerX/PushX)
 
 
 3rd party push server structure written in C#.
