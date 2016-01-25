@@ -42,38 +42,39 @@
     server.SetSettings(settings);
 ```
 4.Push your data 
-
+```csharp
     string responseString = server.Send(dataToSend);
-
+```
 
 #### GCM Device Group:
-
+```csharp
     DeviceGroup deviceGroup = null;
-    
+```   
 **Create**
-
+```csharp
     deviceGroup = new DeviceGroup("FooGroupName",server); //server is an instance of GCMPushServer
-    
+```   
 **Call Existing Group**
-    
+```csharp
     deviceGroup = new DeviceGroup({groupName},{groupKey},server);//server is an instance of GCMPushServer
-
+```
 Notice that, any existing device group does NOT include the data of its past registration ids creating above way.
 
 **Add New Devices**
-
+```csharp
     public bool Add(RegistrationIdCollection collection)
     
     deviceGroup.Add(collection);
-    
+```    
 **Remove Devices**
-    
+```csharp
     public bool Remove(RegistrationIdCollection collection)
     
     deviceGroup.Remove(collection)
-    
+```    
 **Send**
-
+```csharp
     public string Send(IData data)
     
     deviceGroup.Send(data);
+```
